@@ -1789,6 +1789,18 @@
         }
       }
     },
+    "EngineHealthFilters": {
+      "type": "object",
+      "properties": {
+        "engineIds": {
+          "description": "List of engine ids for the test run for which engine health metrics can be filtered.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "EngineHealthMetricsFilters": {
       "type": "object",
       "properties": {
@@ -1804,18 +1816,6 @@
         }
       }
     },
-    "EngineHealthFilters": {
-      "type": "object",
-      "properties": {
-        "engineIds": {
-          "description": "List of engine ids for the test run for which engine health metrics can be filtered.",
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      }
-    },
     "EngineHealthMetricsRequestModel": {
       "description": "Engine health metrics request payload",
       "required": [
@@ -1825,14 +1825,14 @@
       "type": "object",
       "properties": {
         "engineIds": {
-          "description": "List of engine ids. In case of empty, it will return metrics for all engines",
+          "description": "List of engine ids, maximum supported engines for query is 50. In case of empty, it will return metrics for maximum 50 engines.",
           "type": "array",
           "items": {
             "type": "string"
           }
         },
         "groupByInterval": {
-          "description": "For test duration less than 10 minutes group by time interval can be any one of 5s,10s,1m,5m.\\n\\nFor test duration greater than 10 minutes, group by time interval can be any one of 1m,5m,1h. Default value is 1m.",
+          "description": "For test duration less than 3 minutes group by time interval can be any one of 5s,10s,1m,5m.\\n\\nFor test duration greater than 3 minutes, group by time interval can be any one of 1m,5m,1h. Default value is 1m.",
           "type": "string"
         },
         "startTime": {
@@ -1883,7 +1883,7 @@
           }
         },
         "network": {
-          "description": "Network IO bytes time series data.",
+          "description": "Total network throughput time series data.",
           "type": "object",
           "additionalProperties": {
             "type": "array",
@@ -1901,69 +1901,6 @@
               "$ref": "#/definitions/TimeSeries"
             }
           }
-        }
-      }
-    },
-    "EngineHealthSummaryModel": {
-      "description": "A hash map with engine id as key and engine health summary as value",
-      "type": "object",
-      "additionalProperties": {
-        "$ref": "#/definitions/EngineHealthSummary"
-      }
-    },
-    "EngineHealthSummary": {
-      "description": "Engine health status and a hash map of aggregate values for each of the metrics",
-      "type": "object",
-      "properties": {
-        "health": {
-          "description": "Health status of the engine - HEALTHY, UNHEALTHY or UNKNOWN",
-          "type": "string"
-        },
-        "cpu": {
-          "$ref": "#/definitions/EngineHealthMetricsAggregates"
-        },
-        "memory": {
-          "$ref": "#/definitions/EngineHealthMetricsAggregates"
-        },
-        "network": {
-          "$ref": "#/definitions/EngineHealthMetricsAggregates"
-        },
-        "vusers": {
-          "$ref": "#/definitions/EngineHealthMetricsAggregates"
-        }
-      }
-    },
-    "EngineHealthMetricsAggregates": {
-      "description": "Aggregate values for given metrics",
-      "type": "object",
-      "properties": {
-        "avg": {
-          "description": "The average value of the metrics",
-          "type": "number"
-        },
-        "min": {
-          "description": "The minimum value of the metrics",
-          "type": "number"
-        },
-        "max": {
-          "description": "The maximum value of the metrics",
-          "type": "number"
-        },
-        "p50": {
-          "description": "The 50th percentile (median) value of the metrics",
-          "type": "number"
-        },
-        "p90": {
-          "description": "The 90th percentile value of the metrics",
-          "type": "number"
-        },
-        "p95": {
-          "description": "The 95th percentile value of the metrics",
-          "type": "number"
-        },
-        "p99": {
-          "description": "The 99th percentile value of the metrics",
-          "type": "number"
         }
       }
     },
@@ -2610,14 +2547,6 @@
         "subnetId": {
           "description": "Subnet ID on which the load test instances should run.",
           "type": "string",
-          "readOnly": true
-        },
-        "engineHealthSummary": {
-          "description": "Summary of health of all engines in the test run",
-          "type": "object",
-          "additionalProperties": {
-            "$ref": "#/definitions/EngineHealthSummaryModel"
-          },
           "readOnly": true
         }
       }

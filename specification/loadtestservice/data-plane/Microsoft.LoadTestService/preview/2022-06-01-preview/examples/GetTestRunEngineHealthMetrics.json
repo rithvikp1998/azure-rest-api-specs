@@ -4,7 +4,7 @@
     "api-version": "2022-06-01-preview",
     "body": {
       "engineIds": [
-        "1", "2"
+        "engine1", "engine2"
       ],
       "groupByInterval": "10s",
       "startTime": "2021-12-05T16:43:49.590Z",
@@ -17,13 +17,13 @@
         "testRunId": "12316678-1234-1234-1234-122451189012",
         "timeSeries": {
           "cpu": {
-            "1": [
+            "engine1": [
               {
                 "timestamp": "2021-12-05T16:43:49.320Z",
                 "value": 5.0
               }
             ],
-            "2": [
+            "engine2": [
               {
                 "timestamp": "2021-12-05T16:43:49.320Z",
                 "value": 7.0
@@ -31,13 +31,13 @@
             ]
           },
           "memory": {
-            "1": [
+            "engine1": [
               {
                 "timestamp": "2021-12-05T16:43:49.320Z",
                 "value": 19.0
               }
             ],
-            "2": [
+            "engine2": [
               {
                 "timestamp": "2021-12-05T16:43:49.320Z",
                 "value": 19.2
@@ -45,13 +45,13 @@
             ]
           },
           "network": {
-            "1": [
+            "engine1": [
               {
                 "timestamp": "2021-12-05T16:43:49.320Z",
                 "value": 500
               }
             ],
-            "2": [
+            "engine2": [
               {
                 "timestamp": "2021-12-05T16:43:49.320Z",
                 "value": 600
@@ -59,13 +59,13 @@
             ]
           },
           "vusers": {
-            "1": [
+            "engine1": [
               {
                 "timestamp": "2021-12-05T16:43:49.320Z",
                 "value": 10
               }
             ],
-            "2": [
+            "engine2": [
               {
                 "timestamp": "2021-12-05T16:43:49.320Z",
                 "value": 10
