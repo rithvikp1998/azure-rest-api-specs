@@ -1929,6 +1929,14 @@
         }
       }
     },
+    "ErrorDetails": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    },
     "ErrorResponseBody": {
       "description": "The definition of an error object.",
       "type": "object",
@@ -2548,6 +2556,12 @@
           "description": "Subnet ID on which the load test instances should run.",
           "type": "string",
           "readOnly": true
+        },
+        "errorDetails": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ErrorDetails"
+          }
         }
       }
     },
